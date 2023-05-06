@@ -1,4 +1,4 @@
-# gym-app-frontend
+# Gym App
 
 ## Description
 
@@ -11,6 +11,7 @@ Aplikacja dziennika treningowego umożliwia także zbieranie statystyk dotycząc
 Aby stworzyć własny trening, użytkownik może wybrać ćwiczenia z listy domyślnych lub dodać własne ćwiczenia. Każde ćwiczenie może być opisane, a także określona może zostać liczba powtórzeń oraz serii.
 
 
+# gym-app-frontend
 
 ## Project Setup
 
