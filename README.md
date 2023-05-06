@@ -1,14 +1,16 @@
 # gym-app-frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+## Description
 
-## Recommended IDE Setup
+Aplikacja Gym App jest narzędziem, które umożliwia użytkownikowi prowadzenie ścisłej kontroli nad swoimi treningami i osiągnięciami. Dzięki tej aplikacji użytkownik może tworzyć swoje własne plany treningowe, ale także korzystać z listy domyślnych ćwiczeń.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Po zalogowaniu się do aplikacji, użytkownik może zobaczyć kalendarz, który wyświetla historię jego treningów. Dzięki temu, użytkownik może łatwo monitorować swoje postępy, ale także planować kolejne treningi i dostosowywać plany do swoich potrzeb.
 
-## Customize configuration
+Aplikacja dziennika treningowego umożliwia także zbieranie statystyk dotyczących osiągnięć i poszczególnych treningów. Dzięki temu, użytkownik może śledzić swoje postępy, porównywać wyniki z poprzednimi treningami, a także zobaczyć, które ćwiczenia przynoszą mu najlepsze rezultaty.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Aby stworzyć własny trening, użytkownik może wybrać ćwiczenia z listy domyślnych lub dodać własne ćwiczenia. Każde ćwiczenie może być opisane, a także określona może zostać liczba powtórzeń oraz serii.
+
+
 
 ## Project Setup
 
