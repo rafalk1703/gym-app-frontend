@@ -61,6 +61,10 @@
   font-weight: normal;
 }
 
+html{
+  overflow: auto;
+}
+
 body {
   overflow: hidden;
   height: 100vh;
