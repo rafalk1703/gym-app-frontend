@@ -1,1 +1,42 @@
 @import './base.scss';
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#app {
+    min-height: 100vh;
+}
+
+.rounded-xl {
+    border-radius: 16px !important;
+}
+
+.mh-100 {
+    min-height: 100vh;
+}
+
+.card{
+    padding: 20px 24px !important;
+    &__title-section{
+        margin-top: 78px;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    &__title{
+        margin: 0;
+        font-weight: 500;
+        font-size: 72px;
+        line-height: 72px;
+        text-transform: uppercase;
+        text-align: start;
+    }
+    &__subtitle{
+        margin: 0;
+        font-weight: 300;
+        font-size: 32px;
+        line-height: 24px;
+        text-transform: uppercase;
+        text-align: start;
+    }
+}
