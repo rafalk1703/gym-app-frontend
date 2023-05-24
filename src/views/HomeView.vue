@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
+  <NavApp/>
   <main>
-    <TheWelcome />
+    test
   </main>
 </template>

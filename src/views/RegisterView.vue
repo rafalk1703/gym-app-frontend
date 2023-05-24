@@ -1,12 +1,12 @@
 <script setup>
 import FormComponent from '../components/CardForm.vue'
 import { ref } from 'vue'
-import { requiredRules, emailRules, equalPasswordsRule, min8lengthRule as min8lengthRules} from '../utils/rulesUtils.js'
+import { requiredRules, emailRules, equalPasswordsRules, min8lengthRules} from '../utils/rulesUtils.js'
 
 const form = ref(true)
 const loading = ref(false)
-const show1 = ref(false)
-const show2 = ref(false)
+const showPassword = ref(false)
+const showRepeatPassword = ref(false)
 
 const data = ref({
   login: '',
@@ -24,7 +24,7 @@ const onSubmit = () => {
 
 
 const repeatPasswordRules = () => {
-  return equalPasswordsRule(data.value.password, data.value.repeatPassword)
+  return equalPasswordsRules(data.value.password, data.value.repeatPassword)
 }
 </script>
 
@@ -54,14 +54,13 @@ const repeatPasswordRules = () => {
         prepend-inner-icon="mdi-lock"
         variant="underlined"
         v-model="data.password"
-        :rules="[requiredRules, repeatPasswordRules, min8lengthRules]"
+        :rules="[requiredRules, min8lengthRules]"
         label="Password"
         name="input-10-1"
         counter
-        :type="show1 ? 'text' : 'password'"
-        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-        @click:append="show1 = !show1"
-
+        :type="showPassword ? 'text' : 'password'"
+        :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+        @click:append="showPassword = !showPassword"
       ></v-text-field>
       <v-text-field
         prepend-inner-icon="mdi-lock-plus"
@@ -71,14 +70,16 @@ const repeatPasswordRules = () => {
         label="Repeat password"
         name="input-10-2"
         counter
-        :type="show2 ? 'text' : 'password'"
-        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-        @click:append="show2 = !show2"
+        :type="showRepeatPassword ? 'text' : 'password'"
+        :append-icon="showRepeatPassword ? 'mdi-eye' : 'mdi-eye-off'"
+        @click:append="showRepeatPassword = !showRepeatPassword"
 
       ></v-text-field>
       <v-btn block :loading="loading" :disabled="!form" type="submit" class="bg-primary mt-2"
         >Sign In</v-btn
       >
+      <div class="mt-4">or <RouterLink to="/login" class="text-blue">log in</RouterLink></div>
+
     </v-form>
   </FormComponent>
 </template>
