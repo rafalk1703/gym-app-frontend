@@ -1,14 +1,13 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import HeaderNav from './components/HeaderNav.vue'
 
 </script>
 
 <template>
-  <HeaderNav/>
+  <HeaderNav class="app-header" v-if="$route.meta.withoutHeader !== true"/>
   
-  <RouterView />
+  <RouterView class="app-view"/>
 </template>
 
 <style lang="scss" scoped>
