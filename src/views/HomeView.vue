@@ -2,7 +2,6 @@
 </script>
 
 <template>
-  <NavApp/>
   <main>
     test
   </main>

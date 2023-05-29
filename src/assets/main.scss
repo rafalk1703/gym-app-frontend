@@ -6,6 +6,7 @@ html, body {
 
 #app {
     min-height: 100vh;
+    display: flex;
 }
 
 .rounded-xl {
@@ -43,4 +44,8 @@ html, body {
 
 a {
     text-decoration: none;
+}
+
+.v-list-item__prepend > .v-icon {
+    margin-inline-end: 16px !important;
 }
