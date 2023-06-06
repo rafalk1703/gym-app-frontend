@@ -25,6 +25,10 @@ defineProps({
     type: String,
     required: true
   },
+  onClick: {
+    type: Function,
+    required: true
+  }
 })
 
 //TODO
@@ -69,11 +73,9 @@ defineProps({
         </span>
       </div>
     </div>
-    <router-link class="w-100" to="/">
-      <v-btn type="submit" class="w-100 bg-primary mt-2">
+      <v-btn @click="onClick(id)" type="submit" class="w-100 bg-primary mt-2">
         Zobacz
       </v-btn>
-    </router-link>
 
   </div>
 </template>
