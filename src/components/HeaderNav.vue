@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 const drawer = ref(true);
 const rail = ref(true);
@@ -23,47 +23,67 @@ const data = {
       value: 'workouts',
       link: '/workouts'
     },
-
     {
       icon: 'mdi-run',
       title: 'Ćwiczenia',
-      value: 'excercises',
-      link: '/excercises'
+      value: 'exercises',
+      link: '/exercises'
+    },
+    {
+      icon: 'mdi-run',
+      title: 'About',
+      value: 'about',
+      link: '/about'
+    },
+    {
+      icon: 'mdi-run',
+      title: 'Login',
+      value: 'login',
+      link: '/login'
     }
   ]
 }
 </script>
 
 <template>
-  <v-card>
+  <v-card class="header-nav">
     <v-layout>
-      <v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="rail = false">
-        <v-list>
-          <v-list-item
-            prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-            title="Sandra Adams"
-            subtitle="sandra_a88@gmailcom"
-            
-          ></v-list-item>
-        </v-list>
+      <v-navigation-drawer
+          v-model="drawer"
+          :rail="rail"
+          permanent
+          @click="rail = false"
+      >
+        <v-list-item class="v-list-item--bold"
+                     prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
+                     title="John Leider"
+                     nav
+        >
+          <template v-slot:append>
+            <v-btn
+                variant="text"
+                icon="mdi-chevron-left"
+                @click.stop="rail = !rail"
+            ></v-btn>
+          </template>
+        </v-list-item>
 
         <v-divider></v-divider>
 
         <v-list density="compact" nav>
           <v-list-item
-            v-for="(item, i) in data.items"
-            :key="i"
-            :to="item.link"
-            link
-            :prepend-icon="item.icon"
-            :title="item.title"
-            :value="item.value"
+              v-for="(item, i) in data.items"
+              :key="i"
+              :to="item.link"
+              :prepend-icon="item.icon"
+              :title="item.title"
+              :value="item.value"
           />
         </v-list>
 
         <template v-slot:append>
           <v-list density="compact" nav>
-            <v-list-item prepend-icon="mdi-star" title="Logout" value="starred"></v-list-item>
+            <v-list-item prepend-icon="mdi-logout" title="Wyloguj się" value="logout"></v-list-item>
           </v-list>
         </template>
       </v-navigation-drawer>
@@ -74,12 +94,8 @@ const data = {
 </template>
 
 <style lang="scss" scoped>
-// .header-nav {
-//   height: 100vh;
-//   max-width: 200px;
-//   background: #1b1a1a;
-//   border-right: 1px solid #626262;
-//   box-shadow: 0px 4px 100px 8px rgba(0, 0, 0, 0.25);
-//   backdrop-filter: blur(15px);
-// }
+.header-nav {
+  position: absolute;
+  z-index: 1000;
+}
 </style>
