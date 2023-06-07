@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from 'vue'
+import { VDataTable } from 'vuetify/labs/components'
 
 defineProps({
   id: {
@@ -34,41 +36,100 @@ defineProps({
     required: true
   }
 })
+const search = ref('')
+const selected = ref([])
+const desserts = ref([])
+const headers = ref([])
 
-//TODO
+desserts.value = [
+  {
+    name: 'Frozen Yogurt'
+  },
+  {
+    name: 'Ice cream sandwich'
+  },
+  {
+    name: 'Eclair'
+  },
+  {
+    name: 'Cupcake'
+  },
+  {
+    name: 'Gingerbread'
+  },
+  {
+    name: 'Jelly bean'
+  },
+  {
+    name: 'Lollipop'
+  },
+  {
+    name: 'Honeycomb'
+  },
+  {
+    name: 'Donut'
+  },
+  {
+    name: 'KitKat'
+  }
+]
+headers.value = [
+  {
+    align: 'start',
+    key: 'name',
+    sortable: true,
+    title: 'Nazwa'
+  }
+]
 </script>
 
 <template>
   <div class="exercise-component">
     <div class="d-flex flex-column flex-sm-column flex-md-row w-100 align-start">
       <v-img
-          class="w-25 h-100 rounded-lg"
-          cover
-          src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+        class="w-25 h-100 rounded-lg"
+        cover
+        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
       />
-      <div class="w-66 d-flex flex-column justify-center ">
+      <div class="w-66 d-flex flex-column justify-center">
         <h2 class="align-self-center text-center">Dodaj do treningu</h2>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        />
+        <v-data-table
 
+          class="fix-table"
+          v-model="selected"
+          :search="search"
+          show-select
+          :items-per-page="5"
+          :headers="headers"
+          :items="desserts"
+        >
+        </v-data-table>
       </div>
     </div>
     <div class="d-flex flex-row w-100">
-      <v-container fluid class="ma-0 pa-0" >
+      <v-container fluid class="ma-0 pa-0">
+        <v-row class="v-row--no-gutters">
+          <v-col>
+
+          </v-col>
+        </v-row>
         <v-row class="v-row--no-gutters">
           <v-col class="pe-1">
-            <v-btn @click="onExit()" type="submit" class="w-100 bg-red mt-2">
-              Zamknij
-            </v-btn>
+            <v-btn @click="onExit()" type="submit" class="w-100 bg-red mt-2"> Zamknij</v-btn>
           </v-col>
           <v-col class="ps-1">
-            <v-btn @click="onSave(id)" type="submit" class="w-100 bg-primary mt-2">
-              Zapisz
-            </v-btn>
+            <v-btn @click="onSave(id)" type="submit" class="w-100 bg-primary mt-2"> Zapisz</v-btn>
           </v-col>
         </v-row>
       </v-container>
     </div>
-
-
   </div>
 </template>
 
@@ -99,7 +160,7 @@ defineProps({
     text-align: center;
     text-transform: uppercase;
 
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__blocks {
@@ -140,14 +201,16 @@ defineProps({
       align-items: center;
       text-align: center;
 
-      color: #FFFFFF;
+      color: #ffffff;
     }
-
   }
 
   & > .d-flex {
     gap: 16px;
   }
 
+  .v-input__details {
+    display: none !important;
+  }
 }
 </style>

@@ -65,3 +65,14 @@ a {
 }
 
 
+.fix-table{
+    tbody{
+        tr{
+            left: -48px;
+            background: red !important;
+            td{
+                left: 48px;
+            }
+        }
+    }
+}

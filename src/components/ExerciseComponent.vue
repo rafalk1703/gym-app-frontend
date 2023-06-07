@@ -31,7 +31,6 @@ defineProps({
   }
 })
 
-//TODO
 </script>
 
 <template>
