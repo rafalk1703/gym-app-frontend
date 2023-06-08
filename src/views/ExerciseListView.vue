@@ -1,9 +1,10 @@
 <script setup>
 import TitleComponent from "@/components/TitleComponent.vue";
 import ExerciseComponent from "@/components/ExerciseComponent.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import ExerciseViewComponent from "@/components/ExerciseViewComponent.vue";
 import AddToTrainingComponent from "@/components/AddToTrainingComponent.vue";
+import axios from "axios";
 
 const overlay = ref(false);
 const selectedExercise = ref(null);

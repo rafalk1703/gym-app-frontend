@@ -32,7 +32,7 @@ const onSubmit = () => {
         },
         withCredentials: true,
       }).then(res => {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.refresh_token}`
+    axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.access_token}`
 
     router.push('/');
     console.log(res);

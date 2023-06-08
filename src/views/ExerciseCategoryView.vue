@@ -1,6 +1,23 @@
 <script setup>
 import TitleComponent from "@/components/TitleComponent.vue";
 import NavigationImage from "@/components/NavigationImage.vue";
+import {onMounted} from "vue";
+import axios from "axios";
+onMounted(() => {
+  axios.get("/exercises", {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    },
+  }).then(res => {
+    console.log(res);
+  }).catch(error => {
+    console.log(error)
+  })
+  console.log("XD")
+})
+
 </script>
 <template>
   <div>
