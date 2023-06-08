@@ -11,6 +11,7 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import colors from 'vuetify/lib/util/colors'
+import './utils/tools'
 
 const vuetify = createVuetify({
     components,
@@ -28,7 +29,7 @@ const vuetify = createVuetify({
               dark: true,
               colors: {
                 primary: colors.blue.lighten1,
-                secondary: colors.green.accent3, 
+                secondary: colors.green.accent3,
               }
             },
           },
@@ -40,4 +41,3 @@ app.use(router)
 
 app.mount('#app')
 
-  

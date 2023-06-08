@@ -5,6 +5,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import ExerciseCategoryView from "@/views/ExerciseCategoryView.vue";
 import AboutView from "@/views/AboutView.vue";
 import ExerciseListView from "@/views/ExerciseListView.vue";
+import axios from "axios";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,43 +14,42 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      
     },
     {
       path: '/login',
       name: 'login',
       component: LoginView,
-      meta: { withoutHeader: true }
+      meta: { withoutHeader: true, requiresAuth: false}
     },
     {
       path: '/register',
       name: 'register',
       component: RegisterView,
-      meta: { withoutHeader: true }
+      meta: { withoutHeader: true, requiresAuth: false}
     },
     {
       path: '/workouts',
       name: 'workouts',
       component: HomeView,
-      meta: { withoutHeader: false }
+      meta: { withoutHeader: false , requiresAuth: true}
     },
     {
       path: '/calendar',
       name: 'calendar',
       component: HomeView,
-      meta: { withoutHeader: false }
+      meta: { withoutHeader: false , requiresAuth: true}
     },
     {
       path: '/exercises',
       name: 'exercises',
       component: ExerciseCategoryView,
-      meta: { withoutHeader: false }
+      meta: { withoutHeader: false , requiresAuth: true}
     },
     {
       path: '/exercises-list',
       name: 'exercises-list',
       component: ExerciseListView,
-      meta: { withoutHeader: false }
+      meta: { withoutHeader: false , requiresAuth: true}
     },
     {
       path: '/about',
@@ -60,6 +60,17 @@ const router = createRouter({
       component: AboutView
     }
   ]
+})
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (axios.defaults.headers.common["Authorization"] == null) {
+      next("/login")
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
