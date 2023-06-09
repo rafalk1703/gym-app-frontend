@@ -28,18 +28,6 @@ const data = {
       title: 'Ćwiczenia',
       value: 'exercises',
       link: '/exercises'
-    },
-    {
-      icon: 'mdi-run',
-      title: 'About',
-      value: 'about',
-      link: '/about'
-    },
-    {
-      icon: 'mdi-run',
-      title: 'Login',
-      value: 'login',
-      link: '/login'
     }
   ]
 }
@@ -55,14 +43,12 @@ const data = {
           @click="rail = false"
       >
         <v-list-item class="v-list-item--bold"
-                     prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-                     title="John Leider"
                      nav
         >
           <template v-slot:append>
             <v-btn
                 variant="text"
-                icon="mdi-chevron-left"
+                :icon="!rail ? 'mdi-chevron-left' : 'mdi-chevron-right'"
                 @click.stop="rail = !rail"
             ></v-btn>
           </template>

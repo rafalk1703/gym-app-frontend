@@ -6,6 +6,8 @@ import ExerciseCategoryView from "@/views/ExerciseCategoryView.vue";
 import AboutView from "@/views/AboutView.vue";
 import ExerciseListView from "@/views/ExerciseListView.vue";
 import axios from "axios";
+import TrainingListView from "@/views/TrainingListView.vue";
+import CalendarView from "@/views/CalendarView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,13 +32,13 @@ const router = createRouter({
     {
       path: '/workouts',
       name: 'workouts',
-      component: HomeView,
+      component: TrainingListView,
       meta: { withoutHeader: false , requiresAuth: true}
     },
     {
       path: '/calendar',
       name: 'calendar',
-      component: HomeView,
+      component: CalendarView,
       meta: { withoutHeader: false , requiresAuth: true}
     },
     {
@@ -61,16 +63,16 @@ const router = createRouter({
     }
   ]
 })
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (axios.defaults.headers.common["Authorization"] == null) {
-      next("/login")
-    } else {
-      next()
-    }
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     if (axios.defaults.headers.common["Authorization"] == null) {
+//       next("/login")
+//     } else {
+//       next()
+//     }
+//   } else {
+//     next()
+//   }
+// })
 
 export default router
