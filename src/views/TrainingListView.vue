@@ -49,16 +49,17 @@ const startTrainingRequest = (trainingId) => {
 
 const addNewTraining = (data) => {
   axios
-    .post('trainings', {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      data: JSON.stringify({
-        name: "training00"
+    .post('trainings',
+      JSON.stringify({
+        name: data.title
+      }),
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
       })
-    })
     .then((res) => {
       console.log(trainings)
     })
