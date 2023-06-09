@@ -10,8 +10,9 @@ const overlay = ref(false);
 const selectedExercise = ref(null);
 const addToTraining = ref(false);
 const addToList = ref(false);
-let exercises = ref();
-let isFetched = ref(false);
+const exercises = ref();
+const trainings = ref();
+const isFetched = ref(false);
 
 const exerciseTypeId = window.location.href.split("/").slice(-1)[0];
 console.log(exerciseTypeId)
@@ -26,7 +27,7 @@ if (exerciseTypeId !== 0) {
       },
     }).then(res => {
 
-      exercises = res.data
+      exercises.value = res.data
       isFetched.value = true
 
       console.log(exercises);
@@ -45,7 +46,7 @@ if (exerciseTypeId !== 0) {
       },
     }).then(res => {
 
-      exercises = res.data
+      exercises.value = res.data
       isFetched.value = true
 
       console.log(exercises);
@@ -69,10 +70,10 @@ const addToTrainingRequest = (exerciseId, trainingIdList) => {
   "trainings": trainingIdList
   }).then(res => {
 
-      trainings = res.data
+      trainings.value = res.data
       isFetched.value = true
 
-      console.log(trainings);
+      console.log(trainings.value);
     }).catch(error => {
       console.log(error)
     })
@@ -126,7 +127,7 @@ const exerciseSelectCallback = (exercise) => {
       </v-col>
     </v-row>
     <v-row justify="center" align="start">
-      <v-col v-if="isFetched" v-for="exercise in exercises" :key="exercise" cols="12" sm="3">
+      <v-col :v-if="isFetched" v-for="exercise in exercises" :key="exercise" cols="12" sm="3">
         <ExerciseComponent image-url="https://www.pexels.com/pl-pl/zdjecie/miasto-woda-ulica-budynek-17111340/"
                            :title="exercise.name"
                            link="/"
@@ -140,7 +141,7 @@ const exerciseSelectCallback = (exercise) => {
   </v-container>
   <v-overlay v-model="overlay">
     <ExerciseViewComponent v-if="selectedExercise != null && addToTraining !== true && addToList !== true"
-      :id="selectedExercise.id" :title="selectedExercise.name" :description="selectedExercise.description" 
+      :id="selectedExercise.id" :title="selectedExercise.name" :description="selectedExercise.description"
       :category="selectedExercise.type" :difficulty="selectedExercise.level" :time="selectedExercise.time"
       :on-add-to-list="onAddToList" :on-add-to-trainings="onAddToTraining" :on-exit="onExit" />
     <AddToTrainingComponent v-if="addToTraining === true" :id="selectedExercise" title="test1" description="test"

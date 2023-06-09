@@ -1,7 +1,6 @@
 <script setup>
 
-import {ref} from "vue";
-import { onMounted, ref } from "vue";
+import {ref, onMounted} from "vue";
 import axios from "axios";
 
 defineProps({
