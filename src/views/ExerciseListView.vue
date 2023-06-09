@@ -81,10 +81,6 @@ const addToTrainingRequest = (exerciseId, trainingIdList) => {
 }
 
 const onSave = () => {
-  console.log("selectedExercise.value")
-  console.log(selectedExercise.value)
-  console.log("addToTraining.value")
-  console.log(addToTraining.value)
   overlay.value = false;
   selectedExercise.value = null;
   addToTraining.value = false;
@@ -109,8 +105,7 @@ const onAddToTraining = () => {
 }
 
 const exerciseSelectCallback = (exercise) => {
-  // console.log("dsdsdsdsdsdsdsds")
-  // console.log(selectedExercise.value)
+
   overlay.value = true;
   selectedExercise.value = exercise;
   addToTraining.value = false;
@@ -127,7 +122,7 @@ const exerciseSelectCallback = (exercise) => {
       </v-col>
     </v-row>
     <v-row justify="center" align="start">
-      <v-col :v-if="isFetched" v-for="exercise in exercises" :key="exercise" cols="12" sm="3">
+      <v-col v-if="isFetched" v-for="exercise in exercises" :key="exercise" cols="12" sm="3">
         <ExerciseComponent image-url="https://www.pexels.com/pl-pl/zdjecie/miasto-woda-ulica-budynek-17111340/"
                            :title="exercise.name"
                            link="/"
@@ -135,7 +130,7 @@ const exerciseSelectCallback = (exercise) => {
                            :category="exercise.type"
                            :difficulty="exercise.level"
                            :id="exercise.id"
-                           :on-click="exerciseSelectCallback(exercise)"/>
+                           :on-click="() => exerciseSelectCallback(exercise)"/>
       </v-col>
     </v-row>
   </v-container>
