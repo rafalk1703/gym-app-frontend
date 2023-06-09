@@ -4,6 +4,7 @@ import {onMounted, ref} from "vue";
 import TrainingComponent from "@/components/TrainingComponent.vue";
 import AddToTrainingComponent from "@/components/AddToTrainingComponent.vue";
 import CalendarComponent from "@/components/CalendarComponent.vue";
+import axios from 'axios'
 
 
 const overlay = ref(false);
@@ -15,6 +16,34 @@ const data = ref([
     name: 'lorem'
   }
 ])
+
+const trainings = ref()
+const isFetched = ref(false)
+
+
+onMounted(() => {
+
+  axios
+    .get('trainings', {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
+    .then((res) => {
+      trainings.value = res.data
+      isFetched.value = true
+
+      console.log(trainings)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  console.log('XD')
+
+
+})
 const onExit = () => {
   overlay.value = false;
 }
@@ -42,12 +71,12 @@ const addNewCallback = () => {
       </v-col>
     </v-row>
     <v-row justify="stretch" align="stretch">
-      <v-col v-for="n in 8" :key="n" cols="12" sm="3">
+      <v-col v-for="training in trainings" :key="training" cols="12" sm="3">
         <TrainingComponent :data="{last: '12', progress: '50'}"
                            icon="https://images.pexels.com/photos/17066825/pexels-photo-17066825/free-photo-of-droga-krajobraz-ludzie-kobieta.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                           :id="n"
+                           :id="training.id"
                            img-url="https://images.pexels.com/photos/17066825/pexels-photo-17066825/free-photo-of-droga-krajobraz-ludzie-kobieta.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-                           :name="'Trening ' + n"
+                           :name="'Trening ' + training.name"
                            :on-click-show="trainingShowCallback"
                            :on-click-work="trainingWorkCallback">
 

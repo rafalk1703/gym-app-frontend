@@ -13,6 +13,10 @@ defineProps({
     type: String,
     required: true
   },
+  typeId: {
+    type: Number,
+    required: true
+  },
   difficulty: {
     type: String,
     required: true
@@ -38,7 +42,6 @@ defineProps({
     required: true
   }
 })
-
 //TODO
 </script>
 
@@ -102,7 +105,7 @@ defineProps({
             </v-btn>
           </v-col>
           <v-col class="ps-1">
-            <v-btn @click="onAddToList(id)" type="submit" class="w-100 bg-primary mt-2">
+            <v-btn :disabled="typeId==='0'" @click="onAddToList(id)" type="submit" class="w-100 bg-primary mt-2">
               Zapisz do listy
             </v-btn>
           </v-col>

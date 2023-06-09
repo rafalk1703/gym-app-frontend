@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import {onMounted, ref} from "vue";
 import { VDataTable } from 'vuetify/labs/components'
+import axios from 'axios'
 
 defineProps({
   id: {
@@ -38,41 +39,10 @@ defineProps({
 })
 const search = ref('')
 const selected = ref([])
-const desserts = ref([])
 const headers = ref([])
+const isFetched = ref(false)
+const trainings = ref()
 
-desserts.value = [
-  {
-    name: 'Frozen Yogurt'
-  },
-  {
-    name: 'Ice cream sandwich'
-  },
-  {
-    name: 'Eclair'
-  },
-  {
-    name: 'Cupcake'
-  },
-  {
-    name: 'Gingerbread'
-  },
-  {
-    name: 'Jelly bean'
-  },
-  {
-    name: 'Lollipop'
-  },
-  {
-    name: 'Honeycomb'
-  },
-  {
-    name: 'Donut'
-  },
-  {
-    name: 'KitKat'
-  }
-]
 headers.value = [
   {
     align: 'start',
@@ -81,6 +51,27 @@ headers.value = [
     title: 'Nazwa'
   }
 ]
+
+onMounted(() => {
+    axios.get("/trainings", {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+    }).then(res => {
+      console.log(res)
+
+      trainings.value = res.data
+      isFetched.value = true
+
+      console.log("trainings");
+      console.log(trainings);
+    }).catch(error => {
+      console.log(error)
+    })
+    console.log("XD")
+  })
 </script>
 
 <template>
@@ -108,7 +99,7 @@ headers.value = [
             show-select
             :items-per-page="5"
             :headers="headers"
-            :items="desserts"
+            :items="trainings"
         >
         </v-data-table>
       </div>
@@ -125,7 +116,7 @@ headers.value = [
             <v-btn @click="onExit()" type="submit" class="w-100 bg-red mt-2"> Zamknij</v-btn>
           </v-col>
           <v-col class="ps-1">
-            <v-btn @click="onSave(id)" type="submit" class="w-100 bg-primary mt-2"> Zapisz</v-btn>
+            <v-btn @click="onSave(id, selected)" type="submit" class="w-100 bg-primary mt-2"> Zapisz</v-btn>
           </v-col>
         </v-row>
       </v-container>

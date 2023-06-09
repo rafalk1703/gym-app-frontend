@@ -1,7 +1,6 @@
 <script setup>
 
-import {ref, onMounted} from "vue";
-import axios from "axios";
+import { ref } from "vue";
 
 defineProps({
   onExit: {
@@ -13,32 +12,9 @@ defineProps({
     required: true
   }
 })
-const search = ref('')
-const selected = ref([])
-const desserts = ref([])
-const headers = ref([])
-let trainings = ref();
-let isFetched = ref(false);
 
-onMounted(() => {
-    axios.get("/trainings", {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-    }).then(res => {
-      console.log(res)
 
-      trainings = res.data
-      isFetched.value = true
 
-      console.log(trainings);
-    }).catch(error => {
-      console.log(error)
-    })
-    console.log("XD")
-  })
 const data = ref({
   imageUrl: '',
   title: '',
@@ -50,31 +26,15 @@ const data = ref({
 <template>
   <div class="add-training-component">
     <div class="d-flex flex-column flex-sm-column flex-md-row w-100 align-start">
-      <v-img
-        class="w-25 h-100 rounded-lg"
-        cover
-        :src="data.imageUrl"
-      />
+      <v-img class="w-25 h-100 rounded-lg" cover :src="data.imageUrl" />
       <div class="w-66 d-flex flex-column justify-center">
-        <h2 class="align-self-center text-center">Dodaj do treningu</h2>
-        <v-text-field
-            prepend-inner-icon="mdi-format-text"
-            variant="underlined"
-            label="Nazwa ćwiczenia"
-            v-model="data.title"
-        ></v-text-field>
-        <v-text-field
-            prepend-inner-icon="mdi-image-area"
-            variant="underlined"
-            label="Adres url obrazka"
-            v-model="data.imageUrl"
-        ></v-text-field>
-        <v-text-field
-            prepend-inner-icon="mdi-panda"
-            variant="underlined"
-            label="Icona material design"
-            v-model="data.icon"
-        ></v-text-field>
+        <h2 class="align-self-center text-center">Dodaj nowy treningu</h2>
+        <v-text-field prepend-inner-icon="mdi-format-text" variant="underlined" label="Nazwa treningu"
+          v-model="data.title"></v-text-field>
+        <v-text-field prepend-inner-icon="mdi-image-area" variant="underlined" label="Adres url obrazka"
+          v-model="data.imageUrl"></v-text-field>
+        <v-text-field prepend-inner-icon="mdi-panda" variant="underlined" label="Icona material design"
+          v-model="data.icon"></v-text-field>
       </div>
     </div>
     <div class="d-flex flex-row w-100">
@@ -84,7 +44,7 @@ const data = ref({
             <v-btn @click="onExit()" type="submit" class="w-100 bg-red mt-2"> Zamknij</v-btn>
           </v-col>
           <v-col class="ps-1">
-            <v-btn @click="onSave(id)" type="submit" class="w-100 bg-primary mt-2"> Zapisz</v-btn>
+            <v-btn @click="onSave(data)" type="submit" class="w-100 bg-primary mt-2"> Zapisz</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -164,7 +124,7 @@ const data = ref({
     }
   }
 
-  & > .d-flex {
+  &>.d-flex {
     gap: 16px;
   }
 
