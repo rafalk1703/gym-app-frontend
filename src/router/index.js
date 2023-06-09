@@ -8,6 +8,7 @@ import ExerciseListView from "@/views/ExerciseListView.vue";
 import axios from "axios";
 import TrainingListView from "@/views/TrainingListView.vue";
 import CalendarView from "@/views/CalendarView.vue";
+import WorkView from "@/views/WorkView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +52,12 @@ const router = createRouter({
       path: '/exercises-list/:id',
       name: 'exercises-list',
       component: ExerciseListView,
+      // meta: { withoutHeader: false , requiresAuth: true}
+    },
+    {
+      path: '/work',
+      name: 'work',
+      component: WorkView,
       // meta: { withoutHeader: false , requiresAuth: true}
     },
     {
