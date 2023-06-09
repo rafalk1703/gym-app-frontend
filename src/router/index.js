@@ -31,25 +31,25 @@ const router = createRouter({
       path: '/workouts',
       name: 'workouts',
       component: HomeView,
-      meta: { withoutHeader: false , requiresAuth: true}
+      // meta: { withoutHeader: false , requiresAuth: true}
     },
     {
       path: '/calendar',
       name: 'calendar',
       component: HomeView,
-      meta: { withoutHeader: false , requiresAuth: true}
+      // meta: { withoutHeader: false , requiresAuth: true}
     },
     {
       path: '/exercises',
       name: 'exercises',
       component: ExerciseCategoryView,
-      meta: { withoutHeader: false , requiresAuth: true}
+      // meta: { withoutHeader: false , requiresAuth: true}
     },
     {
-      path: '/exercises-list',
+      path: '/exercises-list/:id',
       name: 'exercises-list',
       component: ExerciseListView,
-      meta: { withoutHeader: false , requiresAuth: true}
+      // meta: { withoutHeader: false , requiresAuth: true}
     },
     {
       path: '/about',

@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from "vue";
 import { VDataTable } from 'vuetify/labs/components'
+import axios from "axios";
 
 defineProps({
   id: {
@@ -40,36 +41,68 @@ const search = ref('')
 const selected = ref([])
 const desserts = ref([])
 const headers = ref([])
+let trainings = ref();
+let isFetched = ref(false);
+
+onMounted(() => {
+    axios.get("/trainings", {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+    }).then(res => {
+      console.log(res)
+
+      trainings = res.data
+      isFetched.value = true
+
+      console.log(trainings);
+    }).catch(error => {
+      console.log(error)
+    })
+    console.log("XD")
+  })
 
 desserts.value = [
   {
+    id: 1,
     name: 'Frozen Yogurt'
   },
   {
+    id: 2,
     name: 'Ice cream sandwich'
   },
   {
+    id: 3,
     name: 'Eclair'
   },
   {
+    id: 4,
     name: 'Cupcake'
   },
   {
+    id: 5,
     name: 'Gingerbread'
   },
   {
+    id: 6,
     name: 'Jelly bean'
   },
   {
+    id: 7,
     name: 'Lollipop'
   },
   {
+    id: 8,
     name: 'Honeycomb'
   },
   {
+    id: 9,
     name: 'Donut'
   },
   {
+    id: 10,
     name: 'KitKat'
   }
 ]
