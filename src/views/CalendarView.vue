@@ -7,21 +7,16 @@ import CalendarComponent from "@/components/CalendarComponent.vue";
 
 
 const overlay = ref(false);
+const data = ref([
+  {
+    startDate: new Date(),
+    endDate: new Date(),
+    isDone: true,
+    name: 'lorem'
+  }
+])
 const onExit = () => {
   overlay.value = false;
-}
-
-const onSave = (data) => {
-  overlay.value = false;
-}
-const trainingShowCallback = (id) => {
-  console.log(id)
-  //TODO
-}
-
-const trainingWorkCallback = (id) => {
-  console.log(id)
-  //TODO
 }
 
 const addNewCallback = () => {
@@ -37,8 +32,8 @@ const addNewCallback = () => {
       </v-col>
     </v-row>
     <v-row justify="stretch" align="stretch">
-      <v-col cols="12" sm="3">
-        <CalendarComponent></CalendarComponent>
+      <v-col cols="12" >
+        <CalendarComponent :items="data"/>
       </v-col>
     </v-row>
     <v-row>
@@ -69,7 +64,6 @@ const addNewCallback = () => {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   padding: 8px;
   gap: 8px;
