@@ -45,13 +45,13 @@ const router = createRouter({
       path: '/exercises',
       name: 'exercises',
       component: ExerciseCategoryView,
-      meta: { withoutHeader: false , requiresAuth: true}
+      // meta: { withoutHeader: false , requiresAuth: true}
     },
     {
-      path: '/exercises-list',
+      path: '/exercises-list/:id',
       name: 'exercises-list',
       component: ExerciseListView,
-      meta: { withoutHeader: false , requiresAuth: true}
+      // meta: { withoutHeader: false , requiresAuth: true}
     },
     {
       path: '/about',

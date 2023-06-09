@@ -1,6 +1,8 @@
 <script setup>
 
 import {ref} from "vue";
+import { onMounted, ref } from "vue";
+import axios from "axios";
 
 defineProps({
   onExit: {
@@ -12,12 +14,38 @@ defineProps({
     required: true
   }
 })
+const search = ref('')
+const selected = ref([])
+const desserts = ref([])
+const headers = ref([])
+let trainings = ref();
+let isFetched = ref(false);
+
+onMounted(() => {
+    axios.get("/trainings", {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+    }).then(res => {
+      console.log(res)
+
+      trainings = res.data
+      isFetched.value = true
+
+      console.log(trainings);
+    }).catch(error => {
+      console.log(error)
+    })
+    console.log("XD")
+  })
 const data = ref({
   imageUrl: '',
   title: '',
   icon: '',
+});
 
-})
 </script>
 
 <template>
@@ -146,3 +174,4 @@ const data = ref({
   }
 }
 </style>
+
