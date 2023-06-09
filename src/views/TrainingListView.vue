@@ -11,26 +11,29 @@ const isFetched = ref(false)
 
 
 onMounted(() => {
-
-  axios
-    .get('trainings', {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
-    .then((res) => {
-      trainings.value = res.data
-      isFetched.value = true
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  fetchData()
 })
 
-const startTrainingRequest = (trainingId) => {
+const fetchData = () => {
 
+axios
+  .get('trainings', {
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  })
+  .then((res) => {
+    trainings.value = res.data
+    isFetched.value = true
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+}
+
+const startTrainingRequest = (trainingId) => {
   axios
     .post('/trainingLogs/start/training/' + trainingId, {
       withCredentials: true,
@@ -61,6 +64,7 @@ const addNewTraining = (data) => {
         },
       })
     .then((res) => {
+      fetchData()
       console.log(trainings)
     })
     .catch((error) => {
