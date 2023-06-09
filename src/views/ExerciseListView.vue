@@ -3,8 +3,8 @@ import TitleComponent from "@/components/TitleComponent.vue";
 import ExerciseComponent from "@/components/ExerciseComponent.vue";
 import { onMounted, ref } from "vue";
 import ExerciseViewComponent from "@/components/ExerciseViewComponent.vue";
-import AddToTrainingComponent from "@/components/AddToTrainingComponent.vue";
 import axios from "axios";
+import AddToTrainingsComponent from "@/components/AddToTrainingsComponent.vue";
 
 const overlay = ref(false);
 const selectedExercise = ref(null);
@@ -139,8 +139,8 @@ const exerciseSelectCallback = (exercise) => {
       :id="selectedExercise.id" :title="selectedExercise.name" :description="selectedExercise.description"
       :category="selectedExercise.type" :difficulty="selectedExercise.level" :time="selectedExercise.time"
       :on-add-to-list="onAddToList" :on-add-to-trainings="onAddToTraining" :on-exit="onExit" />
-    <AddToTrainingComponent v-if="addToTraining === true" :id="selectedExercise" title="test1" description="test"
-      category="test" difficulty="test" time="12" :on-exit="onExit" :on-save="onSave" />
+    <AddToTrainingsComponent v-if="addToTraining === true" :id="selectedExercise.id" title="test1" description="test"
+                            category="test" difficulty="test" time="12" :on-exit="onExit" :on-save="onSave"/>
     <ExerciseViewComponent v-if="addToList === true" :id="selectedExercise" title="test2" description="<b>test</b>"
       category="test" difficulty="test" time="12" :on-add-to-list="onAddToList" :on-add-to-trainings="onAddToTraining"
       :on-exit="onExit" />
