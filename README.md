@@ -1,5 +1,9 @@
 # Gym App
 
+## Backend repo
+
+https://github.com/rafalk1703/gym-app-backend
+
 ## Description
 
 Aplikacja Gym App jest narzędziem, które umożliwia użytkownikowi prowadzenie ścisłej kontroli nad swoimi treningami i osiągnięciami. Dzięki tej aplikacji użytkownik może tworzyć swoje własne plany treningowe, ale także korzystać z listy domyślnych ćwiczeń.
